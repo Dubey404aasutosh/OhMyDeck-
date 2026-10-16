@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, follow, noarchive">
+  <meta name="theme-color" content="#DEF915">
+  <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-title" content="Nodeck">
+  <link rel="manifest" href="site.webmanifest">
+  <title>Nodeck 404 | PowerPoint War Adventure</title>
+  <meta name="description" content="You’re off the deck. Enter Nodeck’s PowerPoint War, dodge falling slides, and survive the chaos.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nodeck">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="Nodeck 404 | PowerPoint War Adventure">
+  <meta property="og:description" content="You’re off the deck. Enter Nodeck’s PowerPoint War, dodge falling slides, and survive the chaos.">
+  <meta property="og:image" content="https://www.nodeck.online/og-404.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Nodeck 404 | PowerPoint War Adventure">
+  <meta name="twitter:description" content="You’re off the deck. Enter Nodeck’s PowerPoint War, dodge falling slides, and survive the chaos.">
+  <meta name="twitter:image" content="https://www.nodeck.online/og-404.png">
+  <style>
+    html,body{background-color:#DEF915;overflow:hidden;height:100%;margin:0}
+    .background-pattern-wrapper{visibility:hidden}
+    .game-wrapper.is-title .game-underlay,
+    .game-wrapper.is-title .game-frame,
+    .game-wrapper.is-title #game-container{visibility:hidden;pointer-events:none}
+    .game-title{visibility:hidden}
+    .game-title__logo,.game-title__subtitle,.game-title__actions{opacity:0}
+    .statusbar{visibility:hidden}
+  </style>
+  <script type="module" crossorigin src="/assets/404-k6BThIw6.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/gsap-DUAj52go.js">
+  <link rel="modulepreload" crossorigin href="/assets/howler-EcGChfno.js">
+  <link rel="modulepreload" crossorigin href="/assets/sound-CsfXcoUP.js">
+  <link rel="modulepreload" crossorigin href="/assets/phaser-D3izK-R_.js">
+  <link rel="stylesheet" crossorigin href="/assets/sound-CNYM2cx0.css">
+  <link rel="stylesheet" crossorigin href="/assets/404-D8qzVPqi.css">
+</head>
+<body class="page-404 is-game-menu">
+
+  <div class="background-pattern-wrapper" aria-hidden="true">
+    <div class="background-pattern background-pattern--base"></div>
+  </div>
+
+  <main class="page-404__main">
+    <div class="game-wrapper is-title" id="game-wrapper">
+      <div class="game-hud" id="game-hud" hidden>
+        <div
+          class="game-hud__item game-hud__lives"
+          id="game-lives"
+          role="img"
+          aria-live="polite"
+          aria-atomic="true"
+          aria-label="Lives 3"
+        ></div>
+        <span class="game-hud__item" id="game-score" aria-hidden="true">Score 0</span>
+        <div class="game-hud__end">
+          <button
+            type="button"
+            class="game-hud__aspect"
+            id="game-aspect-toggle"
+            aria-label="Aspect ratio close-up 3:4. Tap for full arena 16:9"
+            aria-pressed="false"
+            title="Toggle 3:4 / 16:9"
+          >
+            3:4
+          </button>
+          <span class="game-hud__item game-hud__item--best" id="game-best" aria-hidden="true">Best 0</span>
+        </div>
+      </div>
+
+      <div class="game-title" id="game-title">
+        <h1 class="sr-only">Page not found (404) — PowerPoint War Adventure</h1>
+        <div class="game-title__hero">
+          <div data-title-logo></div>
+          <p class="game-title__subtitle">PowerPoint War Adventure</p>
+        </div>
+        <div class="game-title__actions" data-title-actions>
+          <button type="button" class="btn btn--big game-title__start" data-title-start>
+            Start game
+          </button>
+          <p class="game-title__hint" data-title-hint>Press Enter or E</p>
+          <p class="game-title__loading" data-title-loading hidden aria-live="polite">Loading…</p>
+        </div>
+      </div>
+      <div class="game-play" id="game-play">
+        <div class="game-underlay" id="game-underlay" aria-hidden="true"></div>
+        <div class="game-frame" id="game-frame" aria-hidden="true"></div>
+        <div
+          id="game-container"
+          role="img"
+          aria-label="Nodeck 404 game"
+          aria-describedby="game-a11y-status"
+        ></div>
+        <p class="sr-only" id="game-a11y-status" aria-live="polite" aria-atomic="true"></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="statusbar statusbar--game">
+    <div class="container">
+      <div class="statusbar__inner">
+        <div class="statusbar__notes">
+          <a href="/" class="statusbar__home">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M222.14,105.85l-80-80a20,20,0,0,0-28.28,0l-80,80A19.86,19.86,0,0,0,28,120v96a12,12,0,0,0,12,12h64a12,12,0,0,0,12-12V164h24v52a12,12,0,0,0,12,12h64a12,12,0,0,0,12-12V120A19.86,19.86,0,0,0,222.14,105.85ZM204,204H164V152a12,12,0,0,0-12-12H104a12,12,0,0,0-12,12v52H52V121.65l76-76,76,76Z"></path></svg>
+            Home
+          </a>
+        </div>
+
+        <div class="game-controls" hidden>
+          <nav class="nav nav--game-controls" aria-label="Move">
+            <div class="nav__dpad" role="group">
+              <button
+                type="button"
+                class="nav__dir nav__dir--left"
+                id="game-btn-left"
+                aria-label="Move left"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"></path></svg>
+              </button>
+              <button
+                type="button"
+                class="nav__dir nav__dir--right"
+                id="game-btn-right"
+                aria-label="Move right"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M184.49,136.49l-80,80a12,12,0,0,1-17-17L159,128,87.51,56.49a12,12,0,1,1,17-17l80,80A12,12,0,0,1,184.49,136.49Z"></path></svg>
+              </button>
+            </div>
+          </nav>
+
+          <button
+            type="button"
+            class="nav__action"
+            id="game-btn-interact"
+            aria-label="Interact"
+          >
+            <span class="nav__action-label" aria-hidden="true">E</span>
+          </button>
+        </div>
+
+        <div class="statusbar__info">
+          <button
+            type="button"
+            class="btn btn-round pattern-pause"
+            id="pattern-pause-btn"
+            aria-pressed="false"
+            aria-label="Pause background motion"
+            title="Pause background"
+          >
+            <svg class="pattern-pause__icon pattern-pause__icon--pause" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M200,32H160a16,16,0,0,0-16,16V208a16,16,0,0,0,16,16h40a16,16,0,0,0,16-16V48A16,16,0,0,0,200,32Zm0,176H160V48h40ZM96,32H56A16,16,0,0,0,40,48V208a16,16,0,0,0,16,16H96a16,16,0,0,0,16-16V48A16,16,0,0,0,96,32Zm0,176H56V48H96Z"></path></svg>
+            <svg class="pattern-pause__icon pattern-pause__icon--play" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M232.4,114.49,88.32,26.35a16,16,0,0,0-16.2-.3A15.86,15.86,0,0,0,64,39.87V216.13A15.94,15.94,0,0,0,80,232a16.07,16.07,0,0,0,8.36-2.35L232.4,141.51a15.81,15.81,0,0,0,0-27ZM80,215.94V40l143.83,88Z"></path></svg>
+          </button>
+          <button
+            type="button"
+            class="btn btn-round sound-toggle sound-toggle--small is-muted"
+            id="sound-toggle-btn"
+            data-sound="off"
+            aria-pressed="false"
+            aria-label="Unmute sound"
+          >
+          <svg class="sound-toggle__icon sound-toggle__icon--on" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 256 256"><path d="M157.27,21.22a12,12,0,0,0-12.64,1.31L75.88,76H32A20,20,0,0,0,12,96v64a20,20,0,0,0,20,20H75.88l68.75,53.47A12,12,0,0,0,164,224V32A12,12,0,0,0,157.27,21.22ZM36,100H68v56H36Zm104,99.46L92,162.13V93.87l48-37.33ZM212,128a44,44,0,0,1-11,29.11,12,12,0,1,1-18-15.88,20,20,0,0,0,0-26.43,12,12,0,0,1,18-15.86A43.94,43.94,0,0,1,212,128Zm40,0a83.87,83.87,0,0,1-21.39,56,12,12,0,0,1-17.89-16,60,60,0,0,0,0-80,12,12,0,1,1,17.88-16A83.87,83.87,0,0,1,252,128Z"></path></svg>
+          <svg class="sound-toggle__icon sound-toggle__icon--off" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256"><path d="M56.88,31.93A12,12,0,1,0,39.12,48.07L64.51,76H32A20,20,0,0,0,12,96v64a20,20,0,0,0,20,20H75.88l68.75,53.47A12,12,0,0,0,164,224V185.44l35.12,38.63a12,12,0,0,0,17.76-16.14ZM36,100H68v56H36Zm104,99.46L92,162.13V106.24L140,159Zm-31-134a12,12,0,0,1,2.11-16.84l33.51-26.07A12,12,0,0,1,164,32V94.94a12,12,0,0,1-24,0V56.54l-14.15,11A12,12,0,0,1,109,65.44Zm74,49.35a12,12,0,0,1,18-15.85,44,44,0,0,1,5.55,50.21,12,12,0,0,1-21-11.55A19.67,19.67,0,0,0,188,128,20,20,0,0,0,183,114.79ZM252,128a84.18,84.18,0,0,1-19.11,53.35,12,12,0,1,1-18.53-15.25A60,60,0,0,0,212.73,88a12,12,0,1,1,17.88-16A83.87,83.87,0,0,1,252,128Z"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
