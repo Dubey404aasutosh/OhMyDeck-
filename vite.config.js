@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 export default defineConfig({
+  base: './',
   plugins: [
     {
       name: 'route-404',
@@ -18,8 +19,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        notFound: resolve(__dirname, '404.html')
+        main: resolve(import.meta.dirname, 'index.html'),
+        notFound: resolve(import.meta.dirname, '404.html')
       }
     }
   }
