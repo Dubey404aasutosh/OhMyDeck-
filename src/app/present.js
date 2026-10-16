@@ -9,7 +9,7 @@ import gsap from 'gsap';
 import { store } from './store.js';
 import { renderSlide, renderThumb, fitCanvas, slideTitle } from './render.js';
 import { sound } from './sound.js';
-import { cssColor } from './themes.js';
+import { cssColor, fgOn } from './themes.js';
 import { h, icon, isTyping, prefersReducedMotion } from './util.js';
 
 export function createPresent(app) {
@@ -146,6 +146,7 @@ export function createPresent(app) {
 
       // "wipe": a coloured panel sweeps across showing the next slide's title, Nodeck-style
       wipeLabel.textContent = slideTitle(store.deck.slides[target], target);
+      wipeLabel.style.color = fgOn('accent', 'line');
       const tl = gsap.timeline({ onComplete: resolve });
       tl.set(wipe, { visibility: 'visible', xPercent: 100 * dir });
       tl.set(wipeLabel, { opacity: 0, y: 30 });

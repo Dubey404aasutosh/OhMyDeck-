@@ -186,7 +186,7 @@ export const isTyping = (e) => {
 
 export const stripHtml = (html) => {
   const d = document.createElement('div');
-  d.innerHTML = html || '';
+  d.innerHTML = (html || '').replace(/<br\s*\/?>|<\/(p|div|li)>/gi, ' ');
   return (d.textContent || '').replace(/\s+/g, ' ').trim();
 };
 

@@ -148,6 +148,13 @@ export function readableOn(bgHex, theme = currentTheme) {
   return good || candidates.sort((a, b) => contrast(b, bgHex) - contrast(a, bgHex))[0];
 }
 
+/** Theme colour `fg` if it is readable on theme colour `bg`, otherwise the best readable alternative. */
+export function fgOn(fg, bg, theme = currentTheme) {
+  if (!theme) return null;
+  const c = theme.colors;
+  return contrast(c[fg], c[bg]) >= 3 ? c[fg] : readableOn(c[bg], theme);
+}
+
 /** CSS colour for default "Text"-coloured words sitting on a fill/background (token or hex). */
 export function textOn(fill) {
   if (!fill || fill === 'none') return null;

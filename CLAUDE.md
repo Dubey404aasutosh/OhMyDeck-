@@ -4,38 +4,47 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A Vite static site reproducing **Nodeck** (nodeck.online), an "anti-presentation" interactive slide-deck website (10 slides, GSAP animations, Howler audio, Swiper carousels, a Phaser mini-game on the 404 page). Much of the repo is captured production output rather than hand-written source; see below.
+**OhMyDeck** is a general-purpose presentation editor and player: plain Vite with vanilla ES modules, and GSAP as the only runtime dependency. It began as a scrape of the Nodeck website (nodeck.online) and keeps that visual style, but all content is now data the user edits in the browser. `README.md` has the user-facing feature list.
 
 ## Commands
 
 ```bash
 npm install
-npm run dev       # Vite dev server; middleware rewrites /404 -> /404.html
-npm run build     # tsc (type-check src/ only, noEmit) then vite build -> dist/
-npm run preview   # serve dist/
+npm run dev       # Vite dev server
+npm run build     # vite build -> dist/ (relative base './', so dist/ works from any sub-path)
+npm run preview
 ```
 
-No test runner or linter is configured.
+There is no test runner, linter or TypeScript.
 
-## Architecture: two parallel code paths
+## Leftovers from the old site (unused)
 
-What actually runs depends on which file the HTML references, so check the `<script>`/`<link>` tags before you edit anything.
+Nothing references these: `public/` (minified Nodeck bundles, audio, and the Phaser 404 game), `404.html`, the root `main.js`, `sound.js` and `main.css`, `src/js/`, `src/styles/` and `tsconfig.json`. They are safe to delete. `vite.config.js` sets `publicDir: 'static'` so that none of them get copied into `dist/`. Static assets the app uses (fonts, sticker images, favicon) live in `static/`.
 
-1. **The live path (what the pages load today).** `index.html` and `404.html` reference prebuilt, minified, content-hashed bundles in `public/assets/`, e.g. `/assets/main-BqI5seD_.js`, `/assets/sound-CsfXcoUP.js`, `/assets/main-DxuZMaGs.css`, `/assets/404-k6BThIw6.js`. Vendor chunks (`gsap-*`, `howler-*`, `swiper-*`, `three-*`, `phaser-*`, `html2canvas-*`) sit next to them and are imported by relative path. Vite serves `public/` as-is, so changing behavior on this path means editing the minified bundles directly, which is how recent commits did it.
-   - The root `main.js`, `sound.js` and `main.css` are copies of those bundles (`sound.js` and `main.css` are byte-identical; `main.js` is an older copy of `public/assets/main-BqI5seD_.js`). Nothing loads them.
-   - `404.html` and `public/404.html` are identical copies. If you change one, keep both in sync.
-   - Hashed asset filenames are referenced by literal string from the HTML and from other bundles. Don't rename them.
+## Architecture (`src/app/`)
 
-2. **The readable rewrite in `src/`, which nothing loads yet.** These are ES modules that import `gsap` from npm:
-   - `src/js/main.js` is the entry point. On DOMContentLoaded it runs `initSplitText()`, then builds `SlideController` (`slides.js`) and `UIController` (`components.js`) and wires them to each other with `slideController.setUIController(ui)`.
-   - `slides.js` handles slide index state (1–10), transitions, and keyboard navigation (arrows, Space, Home/End, M for the menu, N for presenter notes).
-   - `animations.js` covers split-text and the GSAP entrance animation for each slide.
-   - `audio.js` is a singleton `audio` object that synthesizes SFX with the Web Audio API (no sample files). Any element with `data-sfx="click"` triggers `audio.playClick()`.
-   - `src/styles/*.css` has stylesheets split into main, slides, components and animations.
-   - This code expects the same DOM ids as `index.html` (`slides-container`, `.slide`, `slide-counter`, `nav-prev`, `nav-next`, `statusbar`, and others). To use it, point `index.html` at `/src/js/main.js` and the `src/styles` files instead of the hashed bundles.
+**Data model.** A deck is `{ id, title, theme, assets, slides[] }`. A slide is `{ id, bg, pattern, label, notes, elements[] }`. Elements have type `text | image | shape` and are positioned in a fixed **1600×900 logical canvas** (`render.js` exports `W` and `H`), which is scaled to fit with a CSS transform. Element ordering in the array is z-order.
 
-`tsconfig.json` only includes `src/` (which is JS, so the type-check is close to a no-op). The build has two Rollup inputs: `index.html` (`main`) and `404.html` (`notFound`).
+**Colours are theme tokens.** Elements and slides store `bg | paper | ink | accent | accent2 | line` (or a literal hex). `themes.js → applyTheme()` writes these as `--c-*` CSS variables on `:root`, together with `--on-*` "readable text on that colour" variables, fonts, `--border-w`, `--shadow-x` and `--radius`. A theme change therefore recolours every slide and thumbnail with no re-render. Text coloured `ink` automatically switches to a readable colour on its slide background or box fill (`textOn()` in `render.js`).
 
-## Markup conventions
+**Images.** Uploaded pictures are downscaled (`util.processImage`) and stored once in `deck.assets[id]`. Elements reference them as `src: "asset:<id>"`. Built-in stickers use `"sticker:<file>"`, which resolves to `static/stickers/`. Use `resolveSrc()` for both.
 
-`index.html` (~130 KB) holds all slide content inline. The JS hooks into it through data attributes: `data-split` (text-split animation targets), `data-modal` / `data-modal-close`, `data-project-open` / `data-project-panel`, `data-swiper-*` (carousel mounts), `data-sound`, and `data-letter` / `data-shadow`.
+**Modules:**
+- `store.js`: the single source of truth (`store.deck`).
+  - **Mutation protocol:** call `store.checkpoint(key?)` *before* mutating, then `store.changed(what, detail)`, or use `store.update(what, fn, key)`, which does all three.
+  - The `key` coalesces rapid edits (typing, sliders, nudges) into one undo step.
+  - Undo snapshots are JSON strings that exclude `assets`.
+  - Decks persist to IndexedDB (`ohmydeck` db, `decks` store), with a debounced autosave that prunes unreferenced assets.
+  - The `what` strings drive selective re-rendering in `editor.onStore`. `element` and `text` updates touch only the affected nodes, so the caret and inspector focus survive. `deck`, `history`, `slides` and `elements` trigger a full re-render.
+- `render.js`: the slide → DOM renderer, shared by the editor, present mode, thumbnails, the presenter window and PDF. `updateElement()` restyles an existing node in place.
+- `layouts.js`: element factories (`text`, `image`, `shape`, `sticker`), the `LAYOUTS` used by "New slide", and the starter and blank decks.
+- `editor.js`: the slide list (HTML5 drag reorder), the stage, and the inspector.
+  - **Stage:** pointer-based move and resize with snapping guides. Text is edited with `contentEditable` and `execCommand`, plus custom `wrapSelection()` for highlighter `<mark>` and coloured or sized spans.
+  - **Inspector:** built from the widgets in `controls.js`, each a `get`/`set` pair with a `.sync()` that `syncAll()` refreshes.
+  - Also contains the theme, decks, export and help panels.
+- `present.js`: the slideshow, with GSAP transitions (`wipe`, `slide`, `fade`, `none`), notes, overview, blackout, idle-hiding status bar and keyboard/touch navigation.
+- `presenter.js`: the `?presenter` second window. It syncs the slide index with the main window over a `BroadcastChannel('ohmydeck')`.
+- `main.js`: boots the app, owns `app.index` and `app.mode`, and switches between edit and present. The URL hash is `#3` (edit) or `#present/3`.
+- `print.js` + `styles/print.css`: render every slide into `#print-root` and call `window.print()` (`@page` 1600×900px).
+
+**CSS.** `styles/canvas.css` defines how slides look everywhere. UI chrome uses fixed `--ui-*` colours in `base.css`, independent of the deck theme. Editor overlays such as handles and guides are counter-scaled with `--inv` (1/scale).

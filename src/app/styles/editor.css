@@ -278,8 +278,12 @@
   .slide-item .thumb .canvas { transform: scale(0.0775) !important; }
 }
 @media (max-width: 820px) {
-  .editor__body { grid-template-columns: 1fr; grid-template-rows: 110px minmax(240px, 1fr) minmax(200px, 40%); }
-  .sidebar { flex-direction: row; border-right: 0; border-bottom: 2px solid var(--ui-line); }
+  .editor__body { grid-template-columns: minmax(0, 1fr); grid-template-rows: 110px minmax(240px, 1fr) minmax(200px, 40%); }
+  .sidebar { flex-direction: row; min-width: 0; border-right: 0; border-bottom: 2px solid var(--ui-line); }
+  .topbar { flex-wrap: wrap; justify-content: flex-start; gap: 6px; padding: 8px; overflow: visible; }
+  .topbar__group { gap: 6px; }
+  .topbar .brand, .save-badge, .topbar__sep { display: none; }
+  .topbar .ui-btn { min-height: 34px; }
   .slide-list { flex-direction: row; overflow-x: auto; overflow-y: hidden; padding: 10px; }
   .sidebar__foot { border-top: 0; border-left: 2px solid var(--ui-line); display: grid; place-items: center; }
   .sidebar__foot .ui-btn__txt { display: none; }
