@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { palettePreview } from './palette/preview-plugin.js';
 
 export default defineConfig({
   plugins: [
@@ -13,7 +14,9 @@ export default defineConfig({
           next();
         });
       }
-    }
+    },
+    // Dev-only colour palette switcher (top of the page on localhost). Not included in builds.
+    palettePreview()
   ],
   build: {
     rollupOptions: {
