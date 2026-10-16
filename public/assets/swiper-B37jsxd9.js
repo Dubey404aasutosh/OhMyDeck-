@@ -1,0 +1,1 @@
+import{S as s,N as a,E as i,A as p}from"./swiper-hP8iLu9g.js";import{m}from"./sound-CsfXcoUP.js";import"./gsap-DUAj52go.js";import"./howler-EcGChfno.js";function S(r,o={}){const{modules:t=[],...e}=o;return new s(r,{modules:[a,i,p,...t],a11y:{enabled:!0,...e.a11y},...e,speed:m(e.speed)})}export{S as createSwiper};
