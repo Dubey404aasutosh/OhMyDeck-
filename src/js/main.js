@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 5. Stylized Console Welcome
   console.log(
-    '%c NODECK / NOPITCH %c Anti-Presentation Engine Initialized 🚀 ',
+    '%c OHMYDECK / NOPITCH %c Anti-Presentation Engine Initialized 🚀 ',
     'background: #FF87AB; color: #000; font-weight: bold; font-size: 14px; padding: 4px 8px; border-radius: 4px 0 0 4px;',
     'background: #DEF915; color: #000; font-weight: bold; font-size: 14px; padding: 4px 8px; border-radius: 0 4px 4px 0;'
   );

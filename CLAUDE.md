@@ -4,14 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A Vite static site reproducing **Nodeck** (nodeck.online), an "anti-presentation" interactive slide-deck website (10 slides, GSAP animations, Howler audio, Swiper carousels, a Phaser mini-game on the 404 page). Much of the repo is captured production output rather than hand-written source; see below.
+**OhMyDeck** is a Vite static site based on Nodeck (nodeck.online), an "anti-presentation" interactive slide-deck website. It uses GSAP animations, Howler audio and Swiper carousels, and the 404 page is the Slide Stacker game. The "site broken" terminal slide has been removed from the HTML, but its dead code is still in the bundle. Much of the repo is captured production output rather than hand-written source; see below.
+
+The site was rebranded from Nodeck to OhMyDeck. The original author's credits ("About this project" modal), the `author` meta and JSON-LD, and the `nodeck.online` URLs in canonical/OG/sitemap tags were deliberately left unchanged.
 
 ## Commands
 
 ```bash
 npm install
 npm run dev       # Vite dev server; middleware rewrites /404 -> /404.html
-npm run build     # tsc (type-check src/ only, noEmit) then vite build -> dist/
+npm run build     # tsc then vite build -> dist/ (tsc currently fails with TS18003: src/ has no .ts files)
 npm run preview   # serve dist/
 ```
 
@@ -35,6 +37,45 @@ What actually runs depends on which file the HTML references, so check the `<scr
    - This code expects the same DOM ids as `index.html` (`slides-container`, `.slide`, `slide-counter`, `nav-prev`, `nav-next`, `statusbar`, and others). To use it, point `index.html` at `/src/js/main.js` and the `src/styles` files instead of the hashed bundles.
 
 `tsconfig.json` only includes `src/` (which is JS, so the type-check is close to a no-op). The build has two Rollup inputs: `index.html` (`main`) and `404.html` (`notFound`).
+
+## 404 page: Slide Stacker
+
+`404.html` and `public/404.html` are identical; keep them in sync. They are a self-contained page that does not use the old bundles:
+- `public/assets/stacker.css` holds the styles.
+- `public/assets/stacker.js` is a plain canvas game.
+
+The game drops swinging slides onto a pile and trims the overhang. Landing within 5px counts as a Perfect, and 3 Perfects in a row grow the slide back. It plays the existing `/assets/*.ogg` sounds plus `background-game-*.mp3`.
+
+localStorage keys:
+- `ohmydeck_stacker_best` stores the best score.
+- `ohmydeck_stacker_sound` stores the sound setting.
+
+All tuning constants sit at the top of `stacker.js`. `window.__stacker` exposes read-only state for automated tests.
+
+The old Phaser game is unused: `404-k6BThIw6.js`, `404-D8qzVPqi.css`, `phaser-*.js` and `nodeck-pattern-tile-*.png`.
+
+The footer row on the last slide (copyright, Credits/Legal modals, designer credit) was removed. `.slide__footnotes--footer` stays as an empty element because the main bundle animates it.
+
+## Colour palettes
+
+Visitors can switch between 8 palettes (plus a custom mix) with the round button in the top-left corner. Their choice is saved in `localStorage` under `omd_palette`.
+
+- `public/omd-palette.js` is a plain script loaded blocking at the top of `<head>` in `index.html`, `404.html` and `public/404.html`. It holds the palette list, sets `--omd-primary | accent | paper | tint | deep` on `:root` before first paint, exposes `window.OMD`, and builds the switcher UI. `deep` is derived from `primary`, darker and more saturated.
+- The brand colours are never hard-coded. Use the variables instead:
+  - **CSS:** `var(--omd-*)`.
+  - **Minified JS:** `OMD.c("role")` for a single colour, or `OMD.live([...roles])` for an array that updates in place when the palette changes.
+  - **SVG artwork tinted by the palette:** a CSS mask over `background-color: var(--omd-*)`. The highlighter stroke, the slide 2 marker and the card patterns are done this way. Colours left inside those mask URLs are irrelevant.
+- Literal hex values in the HTML (theme-color meta, `var(--omd-x, #hex)`, `fill="#hex"`) are only fallbacks.
+- Raster images keep their baked-in colours: the sticky note, highlighter, eraser, nav overlays, and the OG and Twitter share images.
+
+## Logos
+
+The cover logo (`svg.slide__logo--cover`) and the small top logo (`#logo-home-btn svg`) spell OHMYDECK. They were generated from the BN Dime Display glyphs in the original logo style:
+- letters condensed about 7% and tilted from −12° to +12° along an arch;
+- a white letter path;
+- a black shadow path built from the outer contours plus a copy offset about (44, 45), stroked with a round join (width 76 for the cover, 48 for the small logo).
+
+The hover/intro animation pairs `g[data-letter=k]` with `path[data-shadow=k]`, so letter keys must stay unique. The 404 background uses `public/assets/ohmydeck-pattern-tile.png`; the old `nodeck-pattern-tile-*.png` is unused.
 
 ## Markup conventions
 

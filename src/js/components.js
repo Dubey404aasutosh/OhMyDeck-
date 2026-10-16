@@ -435,7 +435,7 @@ export class UIController {
         this.openModal(`
           <h2>🌟 CREDITS & INSPIRATION</h2>
           <div style="margin-top: 1rem; line-height: 1.6;">
-            <p><strong>Original Concept & Inspiration:</strong> <a href="https://www.nodeck.online/" target="_blank" style="text-decoration: underline; font-weight: bold;">Nodeck.online</a> by <strong>Bogdan Kolomiyets</strong>.</p>
+            <p><strong>Original Concept & Inspiration:</strong> <a href="https://www.nodeck.online/" target="_blank" style="text-decoration: underline; font-weight: bold;">OhMyDeck.online</a> by <strong>Bogdan Kolomiyets</strong>.</p>
             <p><strong>Replication Architecture:</strong> Custom slide transition engine, Web Audio API procedural sound synthesizer, GSAP timeline animations, responsive neo-brutalist bento grid, interactive MS-DOS BIOS terminal simulation, and tactile physical stationery props.</p>
             <p><strong>Fonts:</strong> Bungee & DM Sans (Google Fonts), IBM Plex Mono.</p>
             <p><strong>Aesthetic:</strong> Neo-brutalist comic book style with acid lime (#DEF915), hot pink (#FF87AB), paper cream (#F3E6D6), and heavy ink borders.</p>
@@ -452,7 +452,7 @@ export class UIController {
           <div style="margin-top: 1rem; line-height: 1.6;">
             <p>This project is a high-fidelity educational and architectural demonstration of interactive web storytelling and anti-presentation UI/UX design patterns.</p>
             <p>All brand names and fictional case studies mentioned are parodies designed to showcase interactive web animation techniques.</p>
-            <p>© 2026 NOPITCH / NODECK Interactive Experiment.</p>
+            <p>© 2026 NOPITCH / OHMYDECK Interactive Experiment.</p>
           </div>
         `);
       });
