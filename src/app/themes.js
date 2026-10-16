@@ -121,6 +121,40 @@ export function hexColor(v, theme) {
   return '#000000';
 }
 
+/* ---------- automatic text contrast ---------- */
+
+let currentTheme = null;
+
+function luminance(hex) {
+  const n = parseInt(hex.slice(1), 16);
+  const ch = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => {
+    v /= 255;
+    return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * ch[0] + 0.7152 * ch[1] + 0.0722 * ch[2];
+}
+
+function contrast(a, b) {
+  const [x, y] = [luminance(a), luminance(b)].sort((p, q) => q - p);
+  return (x + 0.05) / (y + 0.05);
+}
+
+/** Best readable text colour on a background: the theme's text colour if it works, else another theme colour, else black/white. */
+export function readableOn(bgHex, theme = currentTheme) {
+  if (!theme || !/^#[0-9a-f]{6}$/i.test(bgHex || '')) return null;
+  const c = theme.colors;
+  const candidates = [c.ink, c.line, c.paper, c.bg, '#111111', '#ffffff'];
+  const good = candidates.find((x) => contrast(x, bgHex) >= 4.5);
+  return good || candidates.sort((a, b) => contrast(b, bgHex) - contrast(a, bgHex))[0];
+}
+
+/** CSS colour for default "Text"-coloured words sitting on a fill/background (token or hex). */
+export function textOn(fill) {
+  if (!fill || fill === 'none') return null;
+  if (isToken(fill)) return `var(--on-${fill})`;
+  return readableOn(fill);
+}
+
 /** Write a theme onto an element as CSS custom properties. */
 export function applyTheme(theme, root = document.documentElement) {
   for (const { key } of COLOR_TOKENS) root.style.setProperty(`--c-${key}`, theme.colors[key]);
@@ -130,4 +164,6 @@ export function applyTheme(theme, root = document.documentElement) {
   root.style.setProperty('--border-w', `${theme.border}px`);
   root.style.setProperty('--shadow-x', `${theme.shadow}px`);
   root.style.setProperty('--radius', `${theme.radius}px`);
+  for (const { key } of COLOR_TOKENS) root.style.setProperty(`--on-${key}`, readableOn(theme.colors[key], theme));
+  currentTheme = theme;
 }

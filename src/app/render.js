@@ -6,7 +6,7 @@
    Every slide is a fixed 1600×900 canvas scaled to fit its box.
    ============================================================ */
 
-import { cssColor } from './themes.js';
+import { cssColor, textOn } from './themes.js';
 import { h, stripHtml } from './util.js';
 
 export const W = 1600;
@@ -38,7 +38,11 @@ export function renderSlide(slide, deck) {
 export function styleCanvas(canvas, slide) {
   canvas.style.setProperty('--slide-bg', cssColor(slide.bg || 'bg'));
   // Highlighter colour must contrast with the slide background
-  canvas.style.setProperty('--c-mark', slide.bg === 'accent' ? 'var(--c-paper)' : 'var(--c-accent)');
+  const mark = slide.bg === 'accent' ? 'paper' : 'accent';
+  canvas.style.setProperty('--c-mark', `var(--c-${mark})`);
+  canvas.style.setProperty('--c-mark-ink', `var(--on-${mark})`);
+  // "Text" colour adapts to the slide background so it stays readable on every theme
+  canvas.style.setProperty('--c-ink-here', textOn(slide.bg || 'bg') || 'var(--c-ink)');
   canvas.dataset.pattern = slide.pattern || 'none';
 }
 
@@ -76,7 +80,8 @@ export function updateElement(node, el) {
     s.fontFamily = fonts[el.font] || fonts.body;
     s.fontSize = `${el.size}px`;
     s.lineHeight = el.lh ?? 1.15;
-    s.color = cssColor(el.color || 'ink');
+    const color = el.color || 'ink';
+    s.color = color === 'ink' ? (hasFill && textOn(el.fill)) || 'var(--c-ink-here, var(--c-ink))' : cssColor(color);
     s.textAlign = el.align || 'left';
     s.justifyContent = { top: 'flex-start', middle: 'center', bottom: 'flex-end' }[el.valign || 'top'];
     s.padding = `${el.pad || 0}px`;

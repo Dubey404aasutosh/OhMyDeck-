@@ -1,0 +1,25 @@
+/* ============================================================
+   PRINT — one slide per 16:9 page (Export → PDF).
+   ============================================================ */
+
+#print-root { display: none; }
+
+@media print {
+  @page { size: 1600px 900px; margin: 0; }
+
+  html, body { height: auto; overflow: visible; background: #fff; }
+  body > *:not(#print-root) { display: none !important; }
+
+  #print-root { display: block; }
+  .print-page {
+    position: relative;
+    width: 1600px;
+    height: 900px;
+    overflow: hidden;
+    break-after: page;
+    page-break-after: always;
+  }
+  .print-page:last-child { break-after: auto; page-break-after: auto; }
+  .print-page .canvas { transform: none; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
