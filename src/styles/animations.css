@@ -1,0 +1,114 @@
+/* ============================================================
+   ANIMATIONS.CSS — Keyframes, Transitions, Split-Text, and CRT
+   ============================================================ */
+
+/* === PROP FLOATING KEYFRAMES === */
+@keyframes float-note {
+  0%, 100% {
+    transform: rotate(-12deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-9deg) translateY(-14px);
+  }
+}
+
+@keyframes float-pen {
+  0%, 100% {
+    transform: rotate(32deg) translateY(0);
+  }
+  50% {
+    transform: rotate(35deg) translateY(-16px);
+  }
+}
+
+@keyframes float-eraser {
+  0%, 100% {
+    transform: rotate(-18deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-15deg) translateY(-10px);
+  }
+}
+
+.slide__prop--note {
+  animation: float-note 6s ease-in-out infinite;
+}
+
+.slide__prop--highlighter {
+  animation: float-pen 7s ease-in-out infinite 0.5s;
+}
+
+.slide__prop--eraser {
+  animation: float-eraser 5.5s ease-in-out infinite 1s;
+}
+
+/* === SPLIT TEXT STYLES === */
+.split-char,
+.split-word {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.split-word {
+  white-space: nowrap;
+  margin-right: 0.25em;
+}
+
+/* === CRT SCREEN FLICKER (Slide 7) === */
+@keyframes crt-flicker {
+  0% { opacity: 0.97; }
+  50% { opacity: 1; }
+  52% { opacity: 0.92; }
+  54% { opacity: 1; }
+  80% { opacity: 0.98; }
+  100% { opacity: 1; }
+}
+
+.slide--bios.is-active .bios-screen {
+  animation: crt-flicker 0.15s infinite;
+}
+
+/* === HIGHLIGHTER STROKE DRAW ANIMATION === */
+@keyframes drawStroke {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.highlighter-stroke path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.slide.is-active .highlighter-stroke path {
+  stroke-dashoffset: 0;
+}
+
+/* === WIGGLE EFFECT ON HOVER === */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+
+.hover-wiggle:hover {
+  animation: wiggle 0.3s ease infinite;
+}
+
+/* === PULSE CTA === */
+@keyframes pulse-cta {
+  0%, 100% {
+    box-shadow: 4px 4px 0px var(--color-black);
+  }
+  50% {
+    box-shadow: 8px 8px 0px var(--color-black), 0 0 16px rgba(222, 249, 21, 0.6);
+  }
+}
+
+.end-cta {
+  animation: pulse-cta 2.5s infinite;
+}

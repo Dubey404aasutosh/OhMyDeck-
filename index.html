@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#F3E6D6" />
+    <meta name="author" content="Your Name" />
+    <link rel="canonical" href="https://example.com/" />
+    <title>NoPitch | A Presentation Website That Hates Presentations</title>
+    <meta name="description" content="NoPitch is an anti-PowerPoint interactive web experience turning corporate presentation culture into a playful world of motion, sound and chaos." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NoPitch | A Presentation Website That Hates Presentations" />
+    <meta property="og:description" content="NoPitch is an anti-PowerPoint interactive web experience turning corporate presentation culture into a playful world of motion, sound and chaos." />
+    <meta property="og:url" content="https://example.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="NoPitch | A Presentation Website That Hates Presentations" />
+    <meta name="twitter:description" content="NoPitch is an anti-PowerPoint interactive web experience turning corporate presentation culture into a playful world of motion, sound and chaos." />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "NoPitch",
+            "url": "https://example.com/",
+            "description": "Interactive presentation and portfolio demo for a fictional startup consultancy.",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "NoPitch",
+            "url": "https://example.com/",
+            "description": "An interactive slide deck presentation for a fictional startup consultancy — sells thinking, not slides.",
+            "inLanguage": "en"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=DM+Sans:wght@400;700;800&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+    <!-- Critical inline styles (prevent FOUC) -->
+    <style>
+      html, body { background-color: #FF87AB; overflow: hidden; height: 100%; margin: 0; }
+      .slide:not(.is-active) { display: none; }
+      .nav-overlay { opacity: 0; pointer-events: none; visibility: hidden; }
+      .site-logo { opacity: 0; pointer-events: none; }
+      .slide-transition-bg { visibility: hidden; }
+      .statusbar { visibility: hidden; }
+      .statusbar__notes-body { opacity: 0; pointer-events: none; }
+      [data-split] { visibility: hidden; }
+    </style>
+
+    <link rel="stylesheet" href="/src/styles/main.css" />
+    <link rel="stylesheet" href="/src/styles/components.css" />
+    <link rel="stylesheet" href="/src/styles/animations.css" />
+    <link rel="stylesheet" href="/src/styles/slides.css" />
+    <script type="module" src="/src/js/main.js"></script>
+  </head>
+  <body>
+    <main>
+      <!-- ===== TOP LOGO (hidden on Slide 1, click = go to Slide 1) ===== -->
+      <button class="site-logo" id="logo-home-btn" aria-label="Go to cover slide">
+        <svg class="site-logo__svg" viewBox="0 0 400 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- "NP" stylized logo -->
+          <text x="10" y="68" class="logo-shadow-text" font-size="72" font-family="Bungee, Impact, sans-serif" font-weight="900" fill="#000" stroke="#000" stroke-width="6" paint-order="stroke">NOPITCH</text>
+          <text x="6" y="64" class="logo-text" font-size="72" font-family="Bungee, Impact, sans-serif" font-weight="900" fill="#fff" stroke="#000" stroke-width="4" paint-order="stroke">NOPITCH</text>
+        </svg>
+      </button>
+
+      <!-- ===== SLIDES CONTAINER ===== -->
+      <div class="slides" id="slides-container">
+
+        <!-- ===================== SLIDE 1: COVER ===================== -->
+        <section class="slide slide--cover is-active" data-slide="1" data-bg="#FF87AB">
+          <div class="container">
+            <div class="slide__inner slide__inner--cover">
+              <!-- Floating Sticky Note Prop -->
+              <div class="slide__prop slide__prop--note" aria-hidden="true">
+                <div class="prop-sticky-note">
+                  <span>REMEMBER:<br/>NO MORE<br/>DECKS!</span>
+                </div>
+              </div>
+              <!-- Floating Highlighter Prop -->
+              <div class="slide__prop slide__prop--highlighter" aria-hidden="true">
+                <div class="prop-highlighter"></div>
+              </div>
+              <!-- Content -->
+              <div class="slide__content slide__content--cover">
+                <h1 class="sr-only">NoPitch — consulting for startups</h1>
+                <p data-split="description" class="slide__eyebrow">We are</p>
+                <!-- Giant Logo -->
+                <div class="slide__hero-logo" aria-hidden="true">
+                  <svg viewBox="0 0 900 140" class="hero-logo-svg">
+                    <text x="450" y="118" text-anchor="middle" class="hero-logo-shadow" font-size="140" font-family="Bungee, Impact, sans-serif" font-weight="900" fill="#000" stroke="#000" stroke-width="10" paint-order="stroke">NOPITCH</text>
+                    <text x="444" y="112" text-anchor="middle" class="hero-logo-main" font-size="140" font-family="Bungee, Impact, sans-serif" font-weight="900" fill="#fff" stroke="#000" stroke-width="5" paint-order="stroke">NOPITCH</text>
+                  </svg>
+                </div>
+                <p data-split="description" class="slide__tagline slide__tagline--cover">
+                  A consulting company for startups that <span class="text-highlight">sells thinking,</span> not slides.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== SLIDE 2: THE PROBLEM ===================== -->
+        <section class="slide slide--problem" data-slide="2" data-bg="#FF87AB">
+          <div class="container">
+            <div class="slide__inner slide__inner--problem">
+              <!-- Eraser Prop -->
+              <div class="slide__prop slide__prop--eraser" aria-hidden="true">
+                <div class="prop-eraser"></div>
+              </div>
+              <div class="slide__content slide__content--problem">
+                <p class="slide__eyebrow" data-split="description">The problem</p>
+                <h2 data-split="heading" class="slide__title slide__title--problem">
+                  Every year, billions are spent on decks <span class="text-highlight">nobody reads,</span> frameworks <span class="text-highlight">nobody uses,</span> and consultants nobody remembers.
+                </h2>
+              </div>
+              <!-- Highlighter Stroke SVG -->
+              <svg class="highlighter-stroke highlighter-stroke--problem" viewBox="0 0 800 60" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M-10 45 Q100 10, 200 35 Q300 55, 400 25 Q500 5, 600 40 Q700 55, 810 20" stroke="#DEF915" stroke-width="40" fill="none" stroke-linecap="round" opacity="0.85"/>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== SLIDE 3: WE BELIEVE ===================== -->
+        <section class="slide slide--believe" data-slide="3" data-bg="#F3E6D6">
+          <!-- Background Highlighter Decoration -->
+          <svg class="highlighter-bg-decoration" viewBox="0 0 800 215" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M-50 180 Q100 50, 250 120 Q400 200, 550 80 Q700 10, 850 150" stroke="#DEF915" stroke-width="60" fill="none" stroke-linecap="round" opacity="0.4"/>
+          </svg>
+          <div class="container">
+            <div class="slide__inner slide__inner--believe">
+              <div class="slide__content slide__content--believe">
+                <p class="slide__eyebrow" data-split="description">We think</p>
+                <div class="slide__statements">
+                  <h2 data-split="heading" class="statement">THE BEST PITCH IS <span class="statement__em">NO PITCH</span>.<sup>1</sup></h2>
+                  <h2 data-split="heading" class="statement">THE BEST DECK IS <span class="statement__em">NO DECK</span>.<sup>2</sup></h2>
+                  <h2 data-split="heading" class="statement">THE BEST DEAL IS A <span class="statement__em">SIGNED ONE</span>.<sup>3</sup></h2>
+                </div>
+              </div>
+              <p class="slide__footnotes" data-split="description">
+                <span><sup>1</sup> YES, WE MEAN IT.</span>
+                <span><sup>2</sup> WE'VE WALKED OUT OF ROOMS...</span>
+                <span><sup>3</sup> IF IT'S NOT SIGNED, IT DIDN'T HAPPEN.</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== SLIDE 4: WHAT WE DO ===================== -->
+        <section class="slide slide--whatwedo" data-slide="4" data-bg="#F3E6D6">
+          <div class="container">
+            <div class="slide__inner slide__inner--whatwedo">
+              <!-- Background Pattern -->
+              <div class="bg-pattern" aria-hidden="true"></div>
+              <div class="slide__content slide__content--whatwedo">
+                <h2 data-split="heading" class="slide__title slide__title--whatwedo">
+                  What we <span class="text-highlight">actually do</span>
+                </h2>
+                <div class="bento-grid">
+                  <div class="bento-card bento-card--lg" data-sfx="click">
+                    <span class="bento-card__icon">🧠</span>
+                    <h3 class="bento-card__title">Strategic Clarity</h3>
+                    <p class="bento-card__desc">We ask the questions nobody asked. Then we make the answers impossible to ignore.</p>
+                  </div>
+                  <div class="bento-card" data-sfx="click">
+                    <span class="bento-card__icon">🎯</span>
+                    <h3 class="bento-card__title">Pitch Elimination</h3>
+                    <p class="bento-card__desc">Kill the deck. Win the deal with a conversation, not a carousel.</p>
+                  </div>
+                  <div class="bento-card" data-sfx="click">
+                    <span class="bento-card__icon">⚡</span>
+                    <h3 class="bento-card__title">Revenue Architecture</h3>
+                    <p class="bento-card__desc">We redesign how you sell — from first touch to signed contract.</p>
+                  </div>
+                  <div class="bento-card bento-card--wide" data-sfx="click">
+                    <span class="bento-card__icon">🔥</span>
+                    <h3 class="bento-card__title">Workshop Demolition</h3>
+                    <p class="bento-card__desc">No more post-its on whiteboards. Real decisions. Real deadlines. Real outcomes.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== SLIDE 5: WHAT WE DON'T DO ===================== -->
+        <section class="slide slide--dontdo" data-slide="5" data-bg="#F3E6D6">
+          <div class="container">
+            <div class="slide__inner slide__inner--dontdo">
+              <div class="slide__content slide__content--dontdo">
+                <div class="dontdo-left">
+                  <h2 data-split="heading" class="slide__title slide__title--dontdo">
+                    What we <span class="text-highlight">don't do</span>
+                  </h2>
+                </div>
+                <div class="dontdo-right">
+                  <!-- Pinned Notepad -->
+                  <div class="notepad">
+                    <div class="notepad__pin" aria-hidden="true">📌</div>
+                    <ol class="notepad__list">
+                      <li data-split="description"><del>Strategy Decks.</del></li>
+                      <li data-split="description"><del>Frameworks.</del></li>
+                      <li data-split="description"><del>Roadmaps.</del></li>
+                      <li data-split="description"><del>Inspiring Workshops.</del></li>
+                      <li data-split="description"><del>Meaningless 76-page PDFs.</del></li>
+                    </ol>
+                    <p class="notepad__footer" data-split="description">
+                      These things have one thing in common: they feel like progress without being progress. The deck gets approved. The meeting ends. Everybody leaves with a PDF. Nobody leaves with a contract.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== SLIDE 6: WHO WE WORK WITH ===================== -->
+        <section class="slide slide--workwith" data-slide="6" data-bg="#F3E6D6">
+          <div class="container">
+            <div class="slide__inner slide__inner--workwith">
+              <div class="slide__content slide__content--workwith">
+                <p class="slide__eyebrow" data-split="description">We work with</p>
+                <h2 data-split="heading" class="slide__title slide__title--workwith">
+                  People who are <span class="text-highlight">done pretending.</span>
+                </h2>
+                <div class="audience-grid">
+                  <div class="audience-card" data-sfx="click">
+                    <span class="audience-card__emoji">🚀</span>
+                    <h3 class="audience-card__title">Founders</h3>
+                    <p class="audience-card__desc">Who'd rather close deals than build decks.</p>
+                  </div>
+                  <div class="audience-card" data-sfx="click">
+                    <span class="audience-card__emoji">💰</span>
+                    <h3 class="audience-card__title">Revenue Teams</h3>
+                    <p class="audience-card__desc">Who need results, not another framework.</p>
+                  </div>
+                  <div class="audience-card" data-sfx="click">
+                    <span class="audience-card__emoji">🎪</span>
+                    <h3 class="audience-card__title">Product Leaders</h3>
+                    <p class="audience-card__desc">Who are tired of workshops that go nowhere.</p>
+                  </div>
+                  <div class="audience-card" data-sfx="click">
+                    <span class="audience-card__emoji">🏢</span>
+                    <h3 class="audience-card__title">Series A–C Startups</h3>
+                    <p class="audience-card__desc">Who outgrew "move fast and break things."</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== SLIDE 7: BIOS ERROR (EASTER EGG) ===================== -->
+        <section class="slide slide--bios" data-slide="7" data-bg="#000000">
+          <div class="bios-screen" id="bios-screen">
+            <div class="bios-content" id="bios-content">
+              <!-- Content is typed in via JS -->
+            </div>
+            <span class="bios-cursor" id="bios-cursor">_</span>
+          </div>
+        </section>
+
+        <!-- ===================== SLIDE 8: CASE STUDIES ===================== -->
+        <section class="slide slide--projects" data-slide="8" data-bg="#F3E6D6">
+          <div class="container">
+            <div class="slide__inner slide__inner--projects">
+              <div class="slide__content slide__content--projects">
+                <div class="projects-carousel" id="projects-carousel">
+                  <!-- Card 1: Pink -->
+                  <div class="project-card project-card--pink is-active" data-project="1">
+                    <div class="project-card__header">
+                      <div>
+                        <span class="project-card__label">Case Study 1</span>
+                        <span class="project-card__industry">FinTech</span>
+                      </div>
+                      <button class="btn btn--outline project-card__cta" data-sfx="click">👀 See Project</button>
+                    </div>
+                    <h3 class="project-card__headline" data-split="heading">1 Meeting.<br/>1 Question.<br/>$4M Saved.</h3>
+                  </div>
+                  <!-- Card 2: Lime -->
+                  <div class="project-card project-card--lime" data-project="2">
+                    <div class="project-card__header">
+                      <div>
+                        <span class="project-card__label">Case Study 2</span>
+                        <span class="project-card__industry">SaaS</span>
+                      </div>
+                      <button class="btn btn--outline project-card__cta" data-sfx="click">👀 See Project</button>
+                    </div>
+                    <h3 class="project-card__headline" data-split="heading">Zero Decks.<br/>3 Contracts.<br/>$12M ARR.</h3>
+                  </div>
+                  <!-- Card 3: White -->
+                  <div class="project-card project-card--white" data-project="3">
+                    <div class="project-card__header">
+                      <div>
+                        <span class="project-card__label">Case Study 3</span>
+                        <span class="project-card__industry">Health & Wellness</span>
+                      </div>
+                      <button class="btn btn--outline project-card__cta" data-sfx="click">👀 See Project</button>
+                    </div>
+                    <h3 class="project-card__headline" data-split="heading">No Slides.<br/>1 Whiteboard.<br/>Series B Closed.</h3>
+                  </div>
+                </div>
+                <!-- Carousel Nav Arrows -->
+                <button class="carousel-arrow carousel-arrow--prev" id="carousel-prev" aria-label="Previous case study" data-sfx="click">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+                <button class="carousel-arrow carousel-arrow--next" id="carousel-next" aria-label="Next case study" data-sfx="click">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== SLIDE 9: TESTIMONIAL ===================== -->
+        <section class="slide slide--testimonial" data-slide="9" data-bg="#F3E6D6">
+          <div class="container">
+            <div class="slide__inner slide__inner--testimonial">
+              <div class="slide__content slide__content--testimonial">
+                <p class="slide__eyebrow" data-split="description">What they said</p>
+                <blockquote class="testimonial" data-split="heading">
+                  "We hired them to fix our pitch. They deleted it. Then we closed the biggest deal of the year."
+                </blockquote>
+                <p class="testimonial__author" data-split="description">
+                  — Sarah Chen, CEO @ fictional startup
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== SLIDE 10: FOOTER / CTA ===================== -->
+        <section class="slide slide--end" data-slide="10" data-bg="#F3E6D6">
+          <div class="container">
+            <div class="slide__inner slide__inner--end">
+              <div class="slide__content slide__content--end">
+                <p class="end-tagline" data-split="description">
+                  Leave the decks in the bin.<br/>
+                  This is the last one you'll ever need.
+                </p>
+                <button class="btn btn--primary btn--lg end-cta" id="end-cta" data-sfx="click">
+                  One more slide...
+                </button>
+              </div>
+              <!-- Trash Bin Visual -->
+              <div class="end-trashbin" aria-hidden="true">
+                <div class="trashbin">
+                  <div class="trashbin__rim"></div>
+                  <div class="trashbin__body">
+                    <div class="trashbin__mesh"></div>
+                    <div class="trashbin__mesh"></div>
+                    <div class="trashbin__mesh"></div>
+                    <div class="trashbin__mesh"></div>
+                    <div class="trashbin__mesh"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Footer -->
+          <footer class="site-footer">
+            <div class="site-footer__left">
+              <span>©2026 NOPITCH</span>
+              <span class="footer-divider">|</span>
+              <button class="footer-link" id="credits-btn">Credits</button>
+              <span class="footer-divider">|</span>
+              <button class="footer-link" id="legal-btn">Legal</button>
+            </div>
+            <div class="site-footer__right">
+              <span>A demo website experience.</span>
+            </div>
+          </footer>
+        </section>
+
+      </div>
+      <!-- END SLIDES -->
+
+      <!-- ===== SLIDE TRANSITION OVERLAY ===== -->
+      <div class="slide-transition-bg" id="slide-transition-bg"></div>
+      <div class="slide-transition-label" id="slide-transition-label"></div>
+
+      <!-- ===== NAVIGATION OVERLAY (Thumbnail Grid) ===== -->
+      <div class="nav-overlay" id="nav-overlay">
+        <div class="nav-overlay__grid" id="nav-overlay-grid">
+          <!-- Thumbnails generated by JS -->
+        </div>
+      </div>
+
+      <!-- ===== STATUS BAR (Fixed Bottom) ===== -->
+      <div class="statusbar" id="statusbar">
+        <div class="statusbar__left">
+          <button class="statusbar__notes-btn" id="notes-toggle" data-sfx="click">Presenter Notes</button>
+        </div>
+        <nav class="statusbar__center">
+          <button class="nav-btn nav-btn--prev" id="nav-prev" aria-label="Previous slide" data-sfx="click">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Prev</span>
+          </button>
+          <button class="nav-btn nav-btn--menu" id="nav-menu" aria-label="Open slide menu" data-sfx="click">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><line x1="4" y1="6" x2="20" y2="6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="4" y1="12" x2="20" y2="12" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="4" y1="18" x2="20" y2="18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+          </button>
+          <button class="nav-btn nav-btn--next" id="nav-next" aria-label="Next slide" data-sfx="click">
+            <span>Next</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </nav>
+        <div class="statusbar__right">
+          <button class="statusbar__sfx-btn" id="sfx-toggle" aria-label="Toggle sound effects" data-sfx="click">
+            <svg id="sfx-icon-on" width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg id="sfx-icon-off" width="20" height="20" viewBox="0 0 24 24" fill="none" style="display:none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="23" y1="9" x2="17" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="17" y1="9" x2="23" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+          <span class="statusbar__counter" id="slide-counter">Slide 1/10</span>
+        </div>
+      </div>
+
+      <!-- ===== PRESENTER NOTES DRAWER ===== -->
+      <div class="notes-drawer" id="notes-drawer">
+        <div class="notes-drawer__content" id="notes-content">
+          <!-- Content set per slide by JS -->
+        </div>
+      </div>
+
+      <!-- ===== MODALS ===== -->
+      <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="modal">
+          <button class="modal__close" id="modal-close" aria-label="Close modal" data-sfx="click">&times;</button>
+          <div class="modal__content" id="modal-content"></div>
+        </div>
+      </div>
+
+    </main>
+  </body>
+</html>
