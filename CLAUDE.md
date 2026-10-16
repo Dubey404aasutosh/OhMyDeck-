@@ -38,6 +38,19 @@ What actually runs depends on which file the HTML references, so check the `<scr
 
 `tsconfig.json` only includes `src/` (which is JS, so the type-check is close to a no-op). The build has two Rollup inputs: `index.html` (`main`) and `404.html` (`notFound`).
 
+## Content (Aasutosh's personal deck)
+
+The slides now carry Aasutosh's own content, written in the first person.
+
+Where text lives when you edit it:
+- **Slide copy:** `index.html`. Keep the existing elements and classes: `data-split` drives the text animation, and `span.text-highlight` drives the marker highlight.
+- **Project pop-ups (slide "Projects"):** the `#proof-project-N` panels after `</main>`.
+- **Presenter notes and menu slide names:** string constants in `public/assets/main-BqI5seD_.js`, passed to each slide class (`super(t, notes, name, thumb)`).
+- **Slide menu thumbnails:** `public/assets/slideN-nav-overlay-*.webp`. These are 480×270 screenshots, so regenerate them after visible text changes. The footer slide's thumbnail is a data URI inside the main JS.
+- **About-me photo:** `public/assets/about-aasutosh.jpg`.
+
+On slide 5, the original red strike-through animation was restyled into an accent-colour highlight by an override appended to the end of `main-DxuZMaGs.css`.
+
 ## 404 page: Slide Stacker
 
 `404.html` and `public/404.html` are identical; keep them in sync. They are a self-contained page that does not use the old bundles:
