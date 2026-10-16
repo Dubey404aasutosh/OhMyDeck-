@@ -54,12 +54,12 @@
 
   /* ---------------- sound ---------------- */
   const SRC = {
-    drop: ['/assets/pop-1-B4vg85z0.ogg', '/assets/pop-2-DiP7LmqZ.ogg', '/assets/pop-3-DE83Lziy.ogg'],
-    perfect: ['/assets/game-pickup-CUG24MFl.ogg'],
-    slice: ['/assets/paper-short-BvcplJlM.ogg'],
-    over: ['/assets/game-death-C76uMFwl.ogg'],
-    button: ['/assets/button-DkstwzwS.ogg'],
-    milestone: ['/assets/highlighter-1-xWJiU_tz.ogg']
+    drop: ['./assets/pop-1-B4vg85z0.ogg', './assets/pop-2-DiP7LmqZ.ogg', './assets/pop-3-DE83Lziy.ogg'],
+    perfect: ['./assets/game-pickup-CUG24MFl.ogg'],
+    slice: ['./assets/paper-short-BvcplJlM.ogg'],
+    over: ['./assets/game-death-C76uMFwl.ogg'],
+    button: ['./assets/button-DkstwzwS.ogg'],
+    milestone: ['./assets/highlighter-1-xWJiU_tz.ogg']
   };
   let soundOn = read(SOUND_KEY, '1') !== '0';
   const pool = {};
@@ -80,7 +80,7 @@
   function setMusic(on) {
     try {
       if (!music) {
-        music = new Audio('/assets/background-game-Clvd7uQq.mp3');
+        music = new Audio('./assets/background-game-Clvd7uQq.mp3');
         music.loop = true;
         music.volume = 0.22;
       }

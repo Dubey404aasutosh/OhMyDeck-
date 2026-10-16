@@ -1,7 +1,7 @@
 /* OhMyDeck 404 — Slide Stacker. Colours come from the palette variables set by /omd-palette.js. */
-@font-face { font-family: 'BN Dime Display'; src: url(/assets/BNDimeDisplay-ChjT9Nsk.woff2) format('woff2'); font-weight: 400; font-display: swap; }
-@font-face { font-family: 'DM Sans'; src: url(/assets/DMSans-Regular-C_2fA_LE.woff2) format('woff2'); font-weight: 400; font-display: swap; }
-@font-face { font-family: 'DM Sans'; src: url(/assets/DMSans-ExtraBold-Du-T3CXV.woff2) format('woff2'); font-weight: 800; font-display: swap; }
+@font-face { font-family: 'BN Dime Display'; src: url(./BNDimeDisplay-ChjT9Nsk.woff2) format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'DM Sans'; src: url(./DMSans-Regular-C_2fA_LE.woff2) format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'DM Sans'; src: url(./DMSans-ExtraBold-Du-T3CXV.woff2) format('woff2'); font-weight: 800; font-display: swap; }
 
 :root {
   --ink: #000;
@@ -29,7 +29,7 @@ button, a { font: inherit; color: inherit; }
 .stacker__bg {
   position: fixed;
   inset: -840px 0 0 -1382px;
-  background: url(/assets/ohmydeck-pattern-tile.png) 0 0 / 691px 420px repeat;
+  background: url(./ohmydeck-pattern-tile.png) 0 0 / 691px 420px repeat;
   opacity: 0.07;
   animation: drift 60s linear infinite;
   pointer-events: none;
