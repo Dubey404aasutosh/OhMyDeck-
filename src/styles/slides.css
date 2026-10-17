@@ -845,3 +845,8 @@
     right: -10px;
   }
 }
+
+.slide__title--howwethink {
+  font-size: clamp(2rem, 1.35rem + 3.25vw, 4.5rem);
+  line-height: 1.12;
+}
