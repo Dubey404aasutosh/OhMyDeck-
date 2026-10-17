@@ -13,7 +13,7 @@ const PRESENTER_NOTES = {
               <div class="notes-drawer__tip">💡 Tip: If someone asks for an executive summary, tell them this <i>is</i> the summary.</div>`,
   },
   2: {
-    title: 'Slide 2: The Problem',
+    title: 'Slide 2: Acceptance',
     content: `<p><strong>Speaker Goal:</strong> Count how many people in the room wince in agreement.</p>
               <p>Billions wasted on frameworks nobody uses. Give a 3-second pause to let the reality sink in.</p>
               <div class="notes-drawer__tip">💡 Tip: Ask: "Who here has actually re-read a 70-page strategy deck this quarter?"</div>`,
@@ -144,7 +144,7 @@ const CASE_STUDIES = {
 // Slide metadata for Thumbnail Menu
 const SLIDE_TITLES = [
   { no: 1, title: 'Cover / Anti-Deck', tag: 'Intro' },
-  { no: 2, title: 'The Problem', tag: 'Statement' },
+  { no: 2, title: 'Acceptance', tag: 'Statement' },
   { no: 3, title: 'We Believe', tag: 'Manifesto' },
   { no: 4, title: 'What We Do', tag: 'Services' },
   { no: 5, title: 'What We Don’t Do', tag: 'Notepad' },

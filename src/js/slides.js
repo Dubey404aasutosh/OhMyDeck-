@@ -194,7 +194,7 @@ export class SlideController {
     const slideLabels = [
       '',
       'COVER // NO DECKS',
-      'THE PROBLEM',
+      'ACCEPTANCE',
       'OUR PHILOSOPHY',
       'WHAT WE DO',
       'WHAT WE DON’T DO',
