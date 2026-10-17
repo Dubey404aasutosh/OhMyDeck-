@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <script src="/omd-palette.js"></script>
+  <script>
+    (function () {
+      var p = window.location.pathname;
+      var repo = '/OhMyDeck-/';
+      var base = p.indexOf(repo) !== -1 ? repo : '/';
+      document.write('<base href="' + base + '">');
+    })();
+  </script>
+  <script src="omd-palette.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="robots" content="noindex, follow, noarchive">
   <meta name="theme-color" content="#DEF915" data-omd="accent">
@@ -22,10 +30,10 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="OhMyDeck 404 | Slide Stacker">
   <meta name="twitter:description" content="This page went missing. Play Slide Stacker: drop swinging slides and build the tallest deck you can.">
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/BNDimeDisplay-ChjT9Nsk.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/DMSans-Regular-C_2fA_LE.woff2">
-  <link rel="stylesheet" href="/assets/stacker.css">
-  <script defer src="/assets/stacker.js"></script>
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/BNDimeDisplay-ChjT9Nsk.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="assets/DMSans-Regular-C_2fA_LE.woff2">
+  <link rel="stylesheet" href="assets/stacker.css">
+  <script defer src="assets/stacker.js"></script>
 </head>
 <body class="stacker" data-state="title">
   <div class="stacker__bg" aria-hidden="true"></div>
@@ -58,7 +66,7 @@
       <p class="panel__text" id="over-stats"></p>
       <div class="panel__actions">
         <button type="button" class="btn btn--big" data-action="restart">Play again</button>
-        <a class="btn btn--ghost" href="/">Back to the deck</a>
+        <a class="btn btn--ghost" href="./">Back to the deck</a>
       </div>
     </section>
 
@@ -69,7 +77,7 @@
   </main>
 
   <footer class="stacker__bar">
-    <a href="/" class="stacker__home">
+    <a href="./" class="stacker__home">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6h-6v6H4a1 1 0 01-1-1z"/></svg>
       Home
     </a>
